@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Flashcards Table</h1>
+        <p><button type="button" (click)="openAddDialog()">Add a flashcard</button></p>
+        <table class="table table-success table-striped"> <!--Style later add functionalities first -->
+            <thead>
+                <tr>
+                    <th>Question</th>
+                    <th>Answer</th>
+                    <th>Status</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(c of flashcards;track c)
+                {
+                    <tr>
+                        <td>{{c.question}}</td>
+                        <td>{{c.answer}}</td>
+                        <td>{{c.status}}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary" (click)="openEditDialog(c)">Edit</button>
+                            <button type="button" class="btn btn-primary" (click)="openDeleteConfirmationDialog(c)">Delete</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+    </table>
+</body>
+</html>

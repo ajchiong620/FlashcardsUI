@@ -3,18 +3,42 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+import { FlashcardTableComponent } from './flashcard-table/flashcard-table.component';
+import { FlashcardAddComponent } from './flashcard-add/flashcard-add.component';
+import { FlashcardEditComponent } from './flashcard-edit/flashcard-edit.component';
+import { HttpClientModule, provideHttpClient } from '@angular/common/http';
+import { FlashcardsService } from './flashcards.service';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    FlashcardTableComponent,
+    FlashcardAddComponent,
+    FlashcardEditComponent,
+    FlashcardDeleteComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatCommonModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [
-    provideClientHydration()
+    FlashcardsService,
+    provideHttpClient()
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { }import { MatCommonModule } from '@angular/material/core';
+import { FlashcardDeleteComponent } from './flashcard-delete/flashcard-delete.component';
+

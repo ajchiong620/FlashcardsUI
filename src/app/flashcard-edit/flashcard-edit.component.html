@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>Edit Flashcard</h1>
+<div mat-dialog-content>
+    <mat-form-field>
+        <input type="text" name="qid" [(ngModel)]="editedFlashcard.qid" hidden>
+    </mat-form-field>
+    <mat-form-field>
+        <label>Question</label>
+        <input [value]="editedFlashcard.question" type="text" name="question" [(ngModel)]="editedFlashcard.question">
+    </mat-form-field>
+    <mat-form-field>
+        <label>Answer</label>
+        <input [value]="editedFlashcard.answer" type="text" name="answer" [(ngModel)]="editedFlashcard.answer">
+    </mat-form-field>
+    <mat-form-field>
+        <input type="text" name="status" [(ngModel)]="editedFlashcard.status" hidden>
+    </mat-form-field>
+    <div mat-dialog-actions>
+        <button mat-button (click)="closeDialog()">Cancel</button>
+        <button mat-button type="submit" (click)="editFlashcard()" cdkFocusInitial>Edit Flashcard</button>
+    </div>
+</div>
+
