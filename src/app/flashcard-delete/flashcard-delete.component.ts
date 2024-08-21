@@ -24,9 +24,28 @@ export class FlashcardDeleteComponent {
       this.flashcardsService.getFlashcardById(id).subscribe({
         next: (flashcard) => {
           this.flashcardToDelete = flashcard;
+        },
+        error: (err) => {
+          console.error('Error fetching flashcard:', err);
         }
-      })
+      });
     }
+  }
+
+  deleteFlashcard() {
+    this.flashcardsService.deleteFlashcard(this.flashcardToDelete.qid)
+    .subscribe({
+      next:() => {
+        this.closeDialog();
+      },
+      error:(response) => {
+        console.error('Error editing flashcard:', response);
+      }
+    });
+  }
+
+  closeDialog() {
+    this.dialogRef.close();
   }
 
 }

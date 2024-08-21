@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Flashcard } from '../flashcard';
 import { FlashcardsService } from '../flashcards.service';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { FlashcardAddComponent } from '../flashcard-add/flashcard-add.component';
 import { FlashcardEditComponent } from '../flashcard-edit/flashcard-edit.component';
 import { FlashcardDeleteComponent } from '../flashcard-delete/flashcard-delete.component';
@@ -15,14 +15,21 @@ export class FlashcardTableComponent implements OnInit {
 
   flashcards:Flashcard[]=[];
   constructor(private flashcardService:FlashcardsService, public dialog:MatDialog){}
-
+  dialogConfig : MatDialogConfig = {
+    width: '400px',
+    height: '300px',
+    position: {
+      top: '50%',
+      left: '50%',
+    }
+  }
+  
   ngOnInit(): void {
     this.flashcardService.getAllFlashcards()
     .subscribe({
       next:(flashcard:any) =>
       {
         this.flashcards=flashcard;
-        console.log(this.flashcards);
       },
       error:(response:any) =>
       {
@@ -32,9 +39,7 @@ export class FlashcardTableComponent implements OnInit {
   }
 
   openAddDialog() {
-    let dialogRef = this.dialog.open(FlashcardAddComponent, {
-      width: 'auto'
-    });
+    let dialogRef = this.dialog.open(FlashcardAddComponent,this.dialogConfig);
 
     dialogRef.afterClosed().subscribe(() => {
       window.location.reload();
@@ -44,7 +49,8 @@ export class FlashcardTableComponent implements OnInit {
   openEditDialog(flashcardData:Flashcard) {
     console.log(flashcardData);
     let dialogRef = this.dialog.open(FlashcardEditComponent, {
-      width: 'auto',
+      width: '400px',
+      height: '600px',
       data: flashcardData
     });
 
@@ -55,7 +61,7 @@ export class FlashcardTableComponent implements OnInit {
 
   openDeleteConfirmationDialog(flashcardData:Flashcard) {
     let dialogRef=this.dialog.open(FlashcardDeleteComponent, {
-      width: 'auto',
+      width: '400px',
       data: flashcardData
     });
 

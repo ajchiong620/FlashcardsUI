@@ -1,0 +1,10 @@
+<div class="flashcard" (click)="toggleAnswer()">
+    <div class="flashcard-content">
+        <div class="flashcard-question" *ngIf="!showAnswer">
+            {{ flashcardData.question }}
+        </div>
+        <div class="flashcard-answer" *ngIf="showAnswer">
+            {{ flashcardData.answer }}
+        </div>
+    </div>
+</div>

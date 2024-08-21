@@ -1,1 +1,18 @@
-<p>flashcard-delete works!</p>
+<h1 mat-dialog-title>Edit Flashcard</h1>
+<div mat-dialog-content>
+    <mat-label>
+        Are you sure you want to delete this flashcard?
+    </mat-label>
+    <mat-label>
+        Question:
+    </mat-label>
+    <p>{{flashcardToDelete.question}}</p>
+    <mat-label>
+        Answer:
+    </mat-label>
+    <p>{{flashcardToDelete.answer}}</p>
+    <div mat-dialog-actions>
+        <button mat-button (click)="closeDialog()">Cancel</button>
+        <button mat-button type="submit" (click)="deleteFlashcard()" cdkFocusInitial>Delete Flashcard</button>
+    </div>
+</div>

@@ -1,19 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Flashcards Table</h1>
-        <p><button type="button" (click)="openAddDialog()">Add a flashcard</button></p>
-        <table class="table table-success table-striped"> <!--Style later add functionalities first -->
+<div class="title-banner">
+    <h3>Flashcards Table</h3>
+</div>
+<div class="container">
+        <div class="button-group">
+            <button type="button" class="btn btn-primary" [routerLink]="['/home']"><i class="bi bi-arrow-left-right"></i> Switch to Flashcard Mode </button>
+            <button type="button" class="btn btn-primary" (click)="openAddDialog()"><i class="bi bi-plus-square"></i> Add Flashcard</button>
+        </div>
+        <table class="table table-striped table-hover"> <!--Style later add functionalities first -->
             <thead>
                 <tr>
                     <th>Question</th>
                     <th>Answer</th>
-                    <th>Status</th>
+                    <th class="stat">Status</th>
                     <th>Options</th>
                 </tr>
             </thead>
@@ -23,14 +21,19 @@
                     <tr>
                         <td>{{c.question}}</td>
                         <td>{{c.answer}}</td>
-                        <td>{{c.status}}</td>
+                        @if (c.status == 'answered') {
+                            <td class="stat"><i style="color:green" class="bi bi-patch-check-fill h5"></i></td>
+                        }
+                        @else {
+                            <td class="stat"><i style="color:red" class="bi bi-patch-question-fill h5"></i></td>
+                        }
                         <td>
-                            <button type="button" class="btn btn-primary" (click)="openEditDialog(c)">Edit</button>
-                            <button type="button" class="btn btn-primary" (click)="openDeleteConfirmationDialog(c)">Delete</button>
+                            <button type="button" class="btn btn-primary" (click)="openEditDialog(c)"><i class="bi bi-pencil"></i></button>
+                            <button type="button" class="btn btn-danger" (click)="openDeleteConfirmationDialog(c)"><i class="bi bi-trash3"></i></button>
                         </td>
                     </tr>
                 }
             </tbody>
     </table>
-</body>
-</html>
+</div>
+

@@ -7,7 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { FlashcardTableComponent } from './flashcard-table/flashcard-table.component';
 import { FlashcardAddComponent } from './flashcard-add/flashcard-add.component';
 import { FlashcardEditComponent } from './flashcard-edit/flashcard-edit.component';
-import { HttpClientModule, provideHttpClient } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { FlashcardsService } from './flashcards.service';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -21,7 +21,9 @@ import { MatInputModule } from '@angular/material/input';
     FlashcardTableComponent,
     FlashcardAddComponent,
     FlashcardEditComponent,
-    FlashcardDeleteComponent
+    FlashcardDeleteComponent,
+    FlashcardCardComponent,
+    FlashcardDeckComponent
   ],
   imports: [
     BrowserModule,
@@ -35,10 +37,12 @@ import { MatInputModule } from '@angular/material/input';
   ],
   providers: [
     FlashcardsService,
-    provideHttpClient()
+    provideHttpClient(withFetch()),
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }import { MatCommonModule } from '@angular/material/core';
 import { FlashcardDeleteComponent } from './flashcard-delete/flashcard-delete.component';
+import { FlashcardCardComponent } from './flashcard-card/flashcard-card.component';
+import { FlashcardDeckComponent } from './flashcard-deck/flashcard-deck.component';
 
