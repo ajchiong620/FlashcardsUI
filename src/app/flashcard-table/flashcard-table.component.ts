@@ -16,14 +16,18 @@ export class FlashcardTableComponent implements OnInit {
   flashcards:Flashcard[]=[];
   constructor(private flashcardService:FlashcardsService, public dialog:MatDialog){}
   dialogConfig : MatDialogConfig = {
-    width: '400px',
-    height: '300px',
+    disableClose: false,
+    hasBackdrop: true,
+    backdropClass: '',
+    width: '250px',
+    height: '',
     position: {
-      top: '50%',
-      left: '50%',
-    }
+        top: '50vh',
+        left: '50vw'
+    },
+    panelClass:'makeItMiddle'
   }
-  
+
   ngOnInit(): void {
     this.flashcardService.getAllFlashcards()
     .subscribe({

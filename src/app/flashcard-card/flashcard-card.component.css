@@ -1,13 +1,13 @@
 .flashcard {
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    border: 2px solid #ddd;
     padding: 20px;
-    margin: 10px;
+    margin: 10px auto;
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s;
-  }
-  
+    max-width: 400px;
+}
+
   .flashcard:hover {
     background-color: #f9f9f9;
   }

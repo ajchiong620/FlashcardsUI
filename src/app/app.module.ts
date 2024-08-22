@@ -10,7 +10,7 @@ import { FlashcardEditComponent } from './flashcard-edit/flashcard-edit.componen
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { FlashcardsService } from './flashcards.service';
 import { FormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 
@@ -33,7 +33,11 @@ import { MatInputModule } from '@angular/material/input';
     MatButtonModule,
     MatCommonModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogContent,
+    MatLabel,
+    MatDialogActions,
+    BrowserAnimationsModule
   ],
   providers: [
     FlashcardsService,
@@ -45,4 +49,6 @@ export class AppModule { }import { MatCommonModule } from '@angular/material/cor
 import { FlashcardDeleteComponent } from './flashcard-delete/flashcard-delete.component';
 import { FlashcardCardComponent } from './flashcard-card/flashcard-card.component';
 import { FlashcardDeckComponent } from './flashcard-deck/flashcard-deck.component';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogActions, MatDialogContent } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 

@@ -17,3 +17,7 @@ h3 {
 td {
     vertical-align: middle;
 }
+
+  .makeItMiddle{
+    transform: translate(-50%, -50%);
+}
