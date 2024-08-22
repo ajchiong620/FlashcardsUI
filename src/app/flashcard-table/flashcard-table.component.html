@@ -4,7 +4,7 @@
 <div class="container">
         <div class="button-group">
             <button type="button" class="btn btn-primary" [routerLink]="['/home']"><i class="bi bi-arrow-left-right"></i> Switch to Flashcard Mode </button>
-            <button type="button" class="btn btn-primary" (click)="openAddDialog()"><i class="bi bi-plus-square"></i> Add Flashcard</button>
+            <button type="button" class="btn btn-primary" [routerLink]="['/add-flashcard']"><i class="bi bi-plus-square"></i> Add Flashcard</button>
         </div>
         <table class="table table-striped table-hover"> <!--Style later add functionalities first -->
             <thead>
@@ -28,8 +28,8 @@
                             <td class="stat"><i style="color:red" class="bi bi-patch-question-fill h5"></i></td>
                         }
                         <td>
-                            <button type="button" class="btn btn-primary" (click)="openEditDialog(c)"><i class="bi bi-pencil"></i></button>
-                            <button type="button" class="btn btn-danger" (click)="openDeleteConfirmationDialog(c)"><i class="bi bi-trash3"></i></button>
+                            <button type="button" class="btn btn-primary" [routerLink]="['/edit-flashcard', c.qid]"><i class="bi bi-pencil"></i></button>
+                            <button type="button" class="btn btn-danger" [routerLink]="['/delete-flashcard', c.qid]"><i class="bi bi-trash3"></i></button>
                         </td>
                     </tr>
                 }

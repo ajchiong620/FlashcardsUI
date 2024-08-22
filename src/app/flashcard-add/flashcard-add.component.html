@@ -1,22 +1,28 @@
-<h3 mat-dialog-title>Add Flashcard</h3>
-<mat-dialog-content>
-    <mat-form-field>
-        <input matInput type="text" name="qid" [(ngModel)]="newFlashcard.qid" hidden>
-    </mat-form-field>
-    <mat-form-field>
-        <mat-label>Question</mat-label>
-        <input matInput type="text" name="question" [(ngModel)]="newFlashcard.question">
-    </mat-form-field>
-    <mat-form-field>
-        <mat-label>Answer</mat-label>
-        <input matInput type="text" name="answer" [(ngModel)]="newFlashcard.answer">
-    </mat-form-field>
-    <mat-form-field>
-        <input matInput type="text" name="status" [(ngModel)]="newFlashcard.status" hidden>
-    </mat-form-field>
-</mat-dialog-content>
-<mat-dialog-actions>
-    <button mat-button (click)="closeDialog()">Cancel</button>
-    <button mat-button type="submit" (click)="addFlashcard()" cdkFocusInitial>Add Flashcard</button>
-</mat-dialog-actions>
+<div class="container">
+    <h3>Add Flashcard</h3>
+    <div class="form">
+        <form #form="ngForm">
+            <div>
+                <input type="text" name="qid" [(ngModel)]="newFlashcard.qid" hidden>
+            </div>
+            <div>
+                <label>Question: </label>
+                <input type="text" name="question" [(ngModel)]="newFlashcard.question">
+            </div>
+            <div>
+                <label>Answer: </label>
+                <input type="text" name="answer" [(ngModel)]="newFlashcard.answer">
+            </div>
+            <div>
+                <input type="text" name="status" [(ngModel)]="newFlashcard.status" hidden>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-primary" (click)="onCancel()">Cancel</button>
+                <button class="btn btn-primary" type="submit" (click)="addFlashcard()" cdkFocusInitial>Add Flashcard</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
 

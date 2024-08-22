@@ -14,19 +14,7 @@ import { FlashcardDeleteComponent } from '../flashcard-delete/flashcard-delete.c
 export class FlashcardTableComponent implements OnInit {
 
   flashcards:Flashcard[]=[];
-  constructor(private flashcardService:FlashcardsService, public dialog:MatDialog){}
-  dialogConfig : MatDialogConfig = {
-    disableClose: false,
-    hasBackdrop: true,
-    backdropClass: '',
-    width: '250px',
-    height: '',
-    position: {
-        top: '50vh',
-        left: '50vw'
-    },
-    panelClass:'makeItMiddle'
-  }
+  constructor(private flashcardService:FlashcardsService){}
 
   ngOnInit(): void {
     this.flashcardService.getAllFlashcards()
@@ -40,37 +28,5 @@ export class FlashcardTableComponent implements OnInit {
         console.error('Error fetching flashcards:', response);
       }
     })
-  }
-
-  openAddDialog() {
-    let dialogRef = this.dialog.open(FlashcardAddComponent,this.dialogConfig);
-
-    dialogRef.afterClosed().subscribe(() => {
-      window.location.reload();
-    });
-  }
-
-  openEditDialog(flashcardData:Flashcard) {
-    console.log(flashcardData);
-    let dialogRef = this.dialog.open(FlashcardEditComponent, {
-      width: '400px',
-      height: '600px',
-      data: flashcardData
-    });
-
-    dialogRef.afterClosed().subscribe(() => {
-      window.location.reload();
-    });
-  }
-
-  openDeleteConfirmationDialog(flashcardData:Flashcard) {
-    let dialogRef=this.dialog.open(FlashcardDeleteComponent, {
-      width: '400px',
-      data: flashcardData
-    });
-
-    dialogRef.afterClosed().subscribe(() => {
-      window.location.reload();
-    });
   }
 }

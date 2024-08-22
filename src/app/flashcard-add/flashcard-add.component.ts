@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Flashcard } from '../flashcard';
 import { FlashcardsService } from '../flashcards.service';
-import { MatDialogRef } from '@angular/material/dialog';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-flashcard-add',
   templateUrl: './flashcard-add.component.html',
@@ -17,7 +16,7 @@ export class FlashcardAddComponent implements OnInit {
     status:'unanswered'
   }
 
-  constructor(private flashcardsService:FlashcardsService,private dialogRef:MatDialogRef<FlashcardAddComponent>){}
+  constructor(private flashcardsService:FlashcardsService,private router:Router){}
 
   ngOnInit() : void {
 
@@ -29,7 +28,7 @@ export class FlashcardAddComponent implements OnInit {
     .subscribe({
       next: ()=>
       {
-        this.closeDialog();
+        this.router.navigate(['home']);
       },
       error: (response) =>
       {
@@ -38,7 +37,7 @@ export class FlashcardAddComponent implements OnInit {
     })
   }
 
-  closeDialog() {
-    this.dialogRef.close();
+  onCancel() {
+    this.router.navigate(['home']);
   }
 }

@@ -1,4 +1,29 @@
-<h1 mat-dialog-title>Edit Flashcard</h1>
+<div class="container">
+    <h3>Delete Flashcard</h3>
+    <div class="content-to-delete">
+        <h5>Are you sure you want to delete this flashcard?</h5>
+        <span class="">
+            <label>
+                Question:
+            </label>
+            <p>{{flashcardToDelete.question}}</p>
+        </span>
+        <span class="">
+            <label>
+                Answer:
+            </label>
+            <p>{{flashcardToDelete.answer}}</p>
+        </span>
+       
+            <div class="button-group">
+                <button class="btn btn-primary" (click)="onCancel()">Cancel</button>
+                <button class="btn btn-primary" type="submit" (click)="deleteFlashcard()" cdkFocusInitial>Delete Flashcard</button>
+            </div>
+    </div>
+</div>
+
+
+<!-- <h1 mat-dialog-title>Edit Flashcard</h1>
 <div mat-dialog-content>
     <mat-label>
         Are you sure you want to delete this flashcard?
@@ -15,4 +40,4 @@
         <button mat-button (click)="closeDialog()">Cancel</button>
         <button mat-button type="submit" (click)="deleteFlashcard()" cdkFocusInitial>Delete Flashcard</button>
     </div>
-</div>
+</div> -->

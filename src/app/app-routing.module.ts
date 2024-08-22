@@ -5,6 +5,7 @@ import { FlashcardAddComponent } from './flashcard-add/flashcard-add.component';
 import { FlashcardDeckComponent } from './flashcard-deck/flashcard-deck.component';
 import { HomeComponent } from './home/home.component';
 import { FlashcardEditComponent } from './flashcard-edit/flashcard-edit.component';
+import { FlashcardDeleteComponent } from './flashcard-delete/flashcard-delete.component';
 
 const routes: Routes = [
   {path: 'flashcards-table',component:FlashcardTableComponent},
@@ -12,7 +13,8 @@ const routes: Routes = [
   {path:'flashcards-deck',component:FlashcardDeckComponent},
   {path:'home',component:HomeComponent},
   {path:'add-flashcard',component:FlashcardAddComponent},
-  {path:'edit-flashcard',component:FlashcardEditComponent}
+  {path:'edit-flashcard/:id',component:FlashcardEditComponent},
+  {path:'delete-flashcard/:id',component:FlashcardDeleteComponent}
 ];
 
 @NgModule({

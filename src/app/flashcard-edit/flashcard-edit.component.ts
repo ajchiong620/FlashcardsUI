@@ -1,8 +1,7 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FlashcardsService } from '../flashcards.service';
 import { Flashcard } from '../flashcard';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -18,28 +17,33 @@ export class FlashcardEditComponent implements OnInit{
     status:''
   };
 
-  constructor(private flashcardsService:FlashcardsService,@Inject(MAT_DIALOG_DATA) private data:any,private dialogRef:MatDialogRef<FlashcardEditComponent>){}
+  constructor(private flashcardsService:FlashcardsService,private router:Router, private route:ActivatedRoute){}
 
   ngOnInit(): void {
-      const id = this.data.qid;
-      if (id) {
-        this.flashcardsService.getFlashcardById(id).subscribe({
-          next: (flashcard) => {
-            this.editedFlashcard = flashcard;
-          },
-          error: (err) => {
-            console.error('Error fetching flashcard:', err);
+      this.route.paramMap.subscribe({
+        next: (params) => {
+          const id = params.get('id');
+          if (id) {
+            this.flashcardsService.getFlashcardById(id).subscribe({
+              next: (flashcard) => {
+                this.editedFlashcard = flashcard;
+              },
+              error: (err) => {
+                console.error('Error fetching flashcard:', err);
+              }
+            });
           }
-        });
-      }
+        }
+      })
     }
 
   editFlashcard() {
+    this.editedFlashcard.status = 'unanswered';
     this.flashcardsService.editFlashcard(this.editedFlashcard.qid,this.editedFlashcard)
     .subscribe({
       next:() =>
       {
-        this.closeDialog();
+        this.router.navigate(['flashcards-table']);
       },
       error:(response) => {
         console.error('Error editing flashcard:', response);
@@ -47,7 +51,7 @@ export class FlashcardEditComponent implements OnInit{
     });
   }
 
-  closeDialog() {
-    this.dialogRef.close();
+  onCancel() {
+    this.router.navigate(['flashcards-table']);
   }
 }

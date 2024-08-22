@@ -1,0 +1,33 @@
+h3 {
+    text-align: center;
+}
+
+.container {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.content-to-delete {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    text-align: center;
+}
+
+.div label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form input {
+    width: 300px;
+}
+
+.button-group {
+    justify-content: center;
+    display:flex;
+    gap: 20px;
+    padding: 20px;
+}

@@ -36,7 +36,7 @@ export class FlashcardsService {
   }
 
   editFlashcard(id:string,editedFlashcard:Flashcard):Observable<Flashcard[]>
-  {
+  {   
     return this.http.put<Flashcard[]>(`${this.baseUrl}${this.controllerName}/${id}`, editedFlashcard);
   }
 

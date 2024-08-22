@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FlashcardsService } from '../flashcards.service';
 import { Flashcard } from '../flashcard';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-flashcard-delete',
@@ -16,27 +16,31 @@ export class FlashcardDeleteComponent {
     status:''
   };
 
-  constructor(private flashcardsService:FlashcardsService,@Inject(MAT_DIALOG_DATA) private data:any,private dialogRef:MatDialogRef<FlashcardDeleteComponent>){}
+  constructor(private flashcardsService:FlashcardsService,private router:Router, private route:ActivatedRoute){}
 
   ngOnInit(): void {
-    const id = this.data.qid;
-    if (id) {
-      this.flashcardsService.getFlashcardById(id).subscribe({
-        next: (flashcard) => {
-          this.flashcardToDelete = flashcard;
-        },
-        error: (err) => {
-          console.error('Error fetching flashcard:', err);
+    this.route.paramMap.subscribe({
+      next: (params) => {
+        const id = params.get('id');
+        if (id) {
+          this.flashcardsService.getFlashcardById(id).subscribe({
+            next: (flashcard) => {
+              this.flashcardToDelete = flashcard;
+            },
+            error: (err) => {
+              console.error('Error fetching flashcard:', err);
+            }
+          });
         }
-      });
-    }
+      }
+    })
   }
 
   deleteFlashcard() {
     this.flashcardsService.deleteFlashcard(this.flashcardToDelete.qid)
     .subscribe({
       next:() => {
-        this.closeDialog();
+        this.router.navigate(['flashcards-table']);
       },
       error:(response) => {
         console.error('Error editing flashcard:', response);
@@ -44,8 +48,7 @@ export class FlashcardDeleteComponent {
     });
   }
 
-  closeDialog() {
-    this.dialogRef.close();
+  onCancel() {
+    this.router.navigate(['flashcards-table']);
   }
-
 }
